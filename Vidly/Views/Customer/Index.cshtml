@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="FONT-FAMILY:Calibri; color: black;font-size:30px; font-weight:bold">Customers</h2>
+
+@if (!Model.Any())
+{
+    <h3>There are no customers available</h3>
+}
+
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="FONT-FAMILY:Calibri; color: black;font-size:25px; font-weight:bold" scope="col">Name</th>
+                <th style="FONT-FAMILY:Calibri; color: black;font-size:25px; font-weight:bold" scope="col">Discount Rate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+            <tr class="table-active">
+                <td style="FONT-FAMILY:Calibri;color:blue; font-size:25px;">@Html.ActionLink(customer.Name, "Details", "Customer", new { ID = customer.ID }, null)</td>
+                <td style="FONT-FAMILY:Calibri;color:#3d3dce; font-size:25px;">@customer.MembershipType.DiscountRate%</td>
+               
+            </tr>
+            }
+    </table>
+
+}
